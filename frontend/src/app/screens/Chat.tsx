@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
-import { App, fetchApps } from "../data/api";
+import { App, fetchApps, chat } from "../data/api";
 
 interface Message {
   role: "user" | "ai";
@@ -26,47 +26,24 @@ export default function Chat() {
     }
   ]);
   const [input, setInput] = useState("");
+  const [isBusy, setIsBusy] = useState(false);
 
-  const handleSend = () => {
-    if (!input.trim()) return;
+  const handleSend = async () => {
+    if (!input.trim() || isBusy) return;
+    
+    setIsBusy(true);
 
     const userMessage: Message = { role: "user", content: input };
     setMessages(prev => [...prev, userMessage]);
-
-    // Simple AI response logic
-    setTimeout(() => {
-      let response = "";
-      let suggestedAppIds: string[] = [];
-
-      const query = input.toLowerCase();
-
-      if (query.includes("earn") || query.includes("money") || query.includes("reward")) {
-        response = "Here are the top earning apps on Pi Network:";
-        suggestedAppIds = ["1", "5", "8"];
-      } else if (query.includes("game")) {
-        response = "Check out these popular games:";
-        suggestedAppIds = ["3", "8"];
-      } else if (query.includes("wallet") || query.includes("finance")) {
-        response = "Here are finance and wallet apps:";
-        suggestedAppIds = ["2", "7", "11"];
-      } else if (query.includes("social") || query.includes("chat")) {
-        response = "Connect with these social apps:";
-        suggestedAppIds = ["4", "12"];
-      } else {
-        response = "Here are some popular apps you might like:";
-        suggestedAppIds = ["1", "2", "3", "4"];
-      }
-
-      const aiMessage: Message = {
-        role: "ai",
-        content: response,
-        suggestedApps: suggestedAppIds
-      };
-
-      setMessages(prev => [...prev, aiMessage]);
-    }, 500);
+    
+    // Send message to server
+    const response = await chat(input);
+    setMessages(prev => [...prev, { role: "ai", content: response.message, suggestedApps: response.suggestedApps.map(a => a.id) }]);
 
     setInput("");
+    
+    setIsBusy(false);
+    
   };
 
   return (
@@ -135,11 +112,12 @@ export default function Chat() {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSend()}
             placeholder="Type message..."
+            disabled={isBusy}
             className="flex-1 px-4 py-2 rounded-xl bg-input-background border border-border focus:border-primary outline-none"
           />
           <button
             onClick={handleSend}
-            disabled={!input.trim()}
+            disabled={!input.trim() || isBusy}
             className="px-6 py-2 rounded-xl bg-primary text-primary-foreground disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 transition-opacity"
           >
             Send
