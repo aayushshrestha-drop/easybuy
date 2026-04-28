@@ -16,7 +16,7 @@ export const categories = ["All", "Social Media", "Gaming", "Lifestyle", "Shoppi
 
 export const fetchApps = async (): Promise<App[]> => {
   try {
-    const response = await fetch('https://api.drop.com.sg');
+    const response = await fetch('https://api.drop.com.sg/app');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
