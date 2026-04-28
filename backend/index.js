@@ -64,7 +64,7 @@ const userQuery = 'Hi';
 // console.log(response.choices[0].message.content);
 
 const app = express();
-const host = process.env.HOST || 'localhost';
+const host = process.env.HOST || '0.0.0.0';
 const port = process.env.PORT || 3000;
 const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173';
 
