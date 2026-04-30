@@ -58,7 +58,7 @@ export default function AppDetail() {
         <div className="flex flex-col items-center text-center space-y-4">
           {/* <div className="text-7xl">{app.icon}</div> */}
           <img 
-          src={`/src/icons/${app.icon}`} 
+          src={`/icons/${app.icon}`} 
           alt={`${app.name} icon`} 
           className="w-20 h-20 object-cover rounded-md"
         />

@@ -86,7 +86,11 @@ export default function Chat() {
                       to={`/app/${app.id}`}
                       className="flex items-center gap-3 p-3 rounded-xl bg-card hover:bg-secondary transition-colors"
                     >
-                      <div className="text-2xl">{app.icon}</div>
+                      <img 
+                        src={`/icons/${app.icon}`} 
+                        alt={`${app.name} icon`} 
+                        className="w-8 h-8 object-cover rounded-md"
+                      />
                       <div className="flex-1 min-w-0">
                         <h4 className="truncate">{app.name}</h4>
                         <p className="text-muted-foreground text-sm truncate">

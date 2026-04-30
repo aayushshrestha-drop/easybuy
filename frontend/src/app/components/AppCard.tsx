@@ -14,7 +14,7 @@ export default function AppCard({ app, variant = "grid" }: AppCardProps) {
         className="flex items-center gap-3 p-3 rounded-xl bg-card hover:bg-secondary transition-colors"
       >
         <img 
-          src={`/src/icons/${app.icon}`} 
+          src={`/icons/${app.icon}`} 
           alt={`${app.name} icon`} 
           className="w-8 h-8 object-cover rounded-md"
         />
@@ -33,7 +33,7 @@ export default function AppCard({ app, variant = "grid" }: AppCardProps) {
       className="block p-4 rounded-xl bg-card hover:bg-secondary transition-colors"
     >
       <img 
-        src={`/src/icons/${app.icon}`} 
+        src={`/icons/${app.icon}`} 
         alt={`${app.name} icon`} 
         className="w-12 h-12 object-cover rounded-xl mb-3"
       />
