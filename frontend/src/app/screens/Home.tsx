@@ -27,10 +27,10 @@ export default function Home() {
       {/* Top Bar */}
       <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
         <div className="flex items-center justify-between p-4">
-          <h1 className="text-primary">EasyBuy</h1>
-          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+          <h1 className="text-primary">EasyBuy - Door to Pi's Ecosystem</h1>
+          {/* <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
             <span className="text-sm">👤</span>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -44,12 +44,12 @@ export default function Home() {
         </Link>
 
         {/* AI Prompt Box */}
-        <Link to="/chat" className="block">
+        {/* <Link to="/chat" className="block">
           <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/30">
             <span>🤖</span>
             <span>Ask AI: "Find earning apps"</span>
           </div>
-        </Link>
+        </Link> */}
 
         {/* Categories */}
         <section>

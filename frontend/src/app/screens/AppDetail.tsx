@@ -56,7 +56,12 @@ export default function AppDetail() {
       <div className="p-4 space-y-6">
         {/* App Header */}
         <div className="flex flex-col items-center text-center space-y-4">
-          <div className="text-7xl">{app.icon}</div>
+          {/* <div className="text-7xl">{app.icon}</div> */}
+          <img 
+          src={`/src/icons/${app.icon}`} 
+          alt={`${app.name} icon`} 
+          className="w-20 h-20 object-cover rounded-md"
+        />
           <div>
             <h1 className="mb-2">{app.name}</h1>
             <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-sm">
@@ -75,12 +80,17 @@ export default function AppDetail() {
 
         {/* Actions */}
         <div className="space-y-3">
-          <button className="w-full px-6 py-3 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-opacity">
+          <a 
+            href={app.link || "#"} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="block text-center w-full px-6 py-3 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+          >
             Open in Pi Browser
-          </button>
-          <button className="w-full px-6 py-3 rounded-xl bg-card hover:bg-secondary transition-colors border border-border">
+          </a>
+          {/* <button className="w-full px-6 py-3 rounded-xl bg-card hover:bg-secondary transition-colors border border-border">
             🔖 Bookmark
-          </button>
+          </button> */}
         </div>
 
         {/* Related Apps */}

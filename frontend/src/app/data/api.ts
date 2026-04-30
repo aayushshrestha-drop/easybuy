@@ -8,6 +8,7 @@ export interface App {
   featured?: boolean | string;
   trending?: boolean | string;
   fullDescription?: string;
+  link?: string;
 }
 
 export const categories = ["All", "Social Media", "Gaming", "Lifestyle", "Shopping"];
@@ -26,8 +27,9 @@ export const fetchApps = async (): Promise<App[]> => {
     // csvtojson parses booleans as strings ("true"/"false"), so we format them
     return data.map((app: any) => ({
       ...app,
-      featured: app.featured === 'true' || app.featured === true,
-      trending: app.trending === 'true' || app.trending === true,
+      featured: app.featured.toLowerCase() === 'true' || app.featured === true,
+      trending: app.trending.toLowerCase() === 'true' || app.trending === true,
+      link: app.link || '',
     }));
   } catch (error) {
     console.error("Failed to fetch apps:", error);
