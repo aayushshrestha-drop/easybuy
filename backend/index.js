@@ -3,13 +3,12 @@ const express = require('express');
 const cors = require('cors');
 const appRouter = require('./routes/app.route');
 const chatRouter = require('./routes/chat.route');
-
-
+const paymentRouter = require('./routes/payment.route');
 
 const app = express();
 const host = process.env.HOST || '0.0.0.0';
 const port = process.env.PORT || 3000;
-const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:4200';
+const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173';
 
 
 // Enable CORS for corsOrigin
@@ -22,6 +21,7 @@ app.use(express.json());
 
 app.use('/app', appRouter);
 app.use('/chat', chatRouter);
+app.use('/payment', paymentRouter);
 
 
 

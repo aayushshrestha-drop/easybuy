@@ -1,3 +1,4 @@
+//const BASE_URL = 'http://localhost:3000';
 const BASE_URL = 'https://api.drop.com.sg';
 export interface App {
   id: string;
@@ -62,4 +63,28 @@ export const chat = async (message: string): Promise<{ message: string, suggeste
     console.error("Failed to fetch apps:", error);
     return { message: '', suggestedApps: [] };
   }
+};
+
+export const approvePayment = async (paymentId: string) => {
+  const response = await fetch(`${BASE_URL}/payment/approve`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ paymentId })
+  });
+  if (!response.ok) {
+    throw new Error('Failed to approve payment');
+  }
+  return response.json();
+};
+
+export const completePayment = async (paymentId: string, txid: string) => {
+  const response = await fetch(`${BASE_URL}/payment/complete`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ paymentId, txid })
+  });
+  if (!response.ok) {
+    throw new Error('Failed to complete payment');
+  }
+  return response.json();
 };
