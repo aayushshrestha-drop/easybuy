@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { App, categories, fetchApps, approvePayment, completePayment } from "../data/api";
 import AppCard from "../components/AppCard";
 import CategoryChip from "../components/CategoryChip";
+import { authenticatePi } from "../utils/pi-sdk";
 
 export default function Home() {
   const [apps, setApps] = useState<App[]>([]);
@@ -23,14 +24,9 @@ export default function Home() {
         return;
       }
 
-      // Re-authenticate to ensure payments scope is active
-      const scopes = ['username', 'payments'];
-      function onIncompletePaymentFound(payment: any) {
-        console.log("Incomplete payment found", payment);
-      }
-      
-      await window.Pi.authenticate(scopes, onIncompletePaymentFound);
-       console.log("Auth inside handleDonate successful");
+      // Re-authenticate using helper which ensures init
+      await authenticatePi();
+      console.log("Auth inside handleDonate successful");
 
        const paymentData = {
         amount: 1,

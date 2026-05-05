@@ -2,6 +2,7 @@
   import { createRoot } from "react-dom/client";
   import App from "./app/App.tsx";
   import "./styles/index.css";
+  import { authenticatePi } from "./app/utils/pi-sdk.ts";
 
   // Declare Pi globally to avoid TypeScript errors
   declare global {
@@ -13,19 +14,10 @@
   // Authenticate user with Pi SDK
   const authenticatePiUser = async () => {
     try {
-      if (window.Pi) {
-        const scopes = ['username', 'payments'];
-        
-        // Read more about this callback in the Pi Network Developer Documentation
-        function onIncompletePaymentFound(payment: any) {
-          console.log("Incomplete payment found", payment);
-        }
-
-        const authResults = await window.Pi.authenticate(scopes, onIncompletePaymentFound);
+      const authResults = await authenticatePi();
+      if (authResults) {
         console.log("Pi Authentication successful:", authResults);
         alert(`Authenticated as ${authResults.user.username}`);
-      } else {
-        console.warn("Pi SDK not found. Make sure you are running in the Pi Browser.");
       }
     } catch (err: any) {
       console.error("Pi Authentication failed:", err);
