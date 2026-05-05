@@ -142,7 +142,7 @@ export default function Home() {
           <div className="flex flex-col items-center gap-4 text-sm text-muted-foreground">
             <div className="flex gap-6">
               <Link to="/terms" className="hover:text-primary transition-colors">
-                Terms & Conditions
+                Terms of Service
               </Link>
               <Link to="/privacy" className="hover:text-primary transition-colors">
                 Privacy Policy
