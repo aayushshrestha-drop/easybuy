@@ -42,9 +42,9 @@ export default function Home() {
 
       await window.Pi.createPayment(paymentData, callbacks);
       alert("Thank you for your donation!");
-    } catch (err) {
+    } catch (err: any) {
       console.error("Donation failed:", err);
-      alert("Donation failed. Please try again.");
+      alert("Donation failed: " + (err?.message || JSON.stringify(err)));
     }
   };
 
