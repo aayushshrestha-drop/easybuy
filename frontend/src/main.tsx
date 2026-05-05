@@ -32,7 +32,7 @@
     }
   };
 
-  authenticatePiUser();
+  //authenticatePiUser();
 
   createRoot(document.getElementById("root")!).render(<App />);
   
