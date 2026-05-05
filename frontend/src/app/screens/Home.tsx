@@ -44,6 +44,7 @@ export default function Home() {
         sandbox: true,
         scopes: ["payments"]
       });
+      alert("Init Done");
       await window.Pi.createPayment(paymentData, callbacks);
       alert("Thank you for your donation!");
     } catch (err: any) {
