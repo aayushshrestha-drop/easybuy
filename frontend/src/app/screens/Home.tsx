@@ -39,12 +39,7 @@ export default function Home() {
         onCancel: (paymentId: string) => console.log("Payment cancelled", paymentId),
         onError: (error: Error, paymentId?: string) => console.error("Payment error", error, paymentId)
       };
-      await window.Pi.init({
-        version: "2.0",
-        sandbox: true,
-        scopes: ["payments"]
-      });
-      alert("Init Done");
+
       await window.Pi.createPayment(paymentData, callbacks);
       alert("Thank you for your donation!");
     } catch (err: any) {
