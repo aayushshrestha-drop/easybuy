@@ -27,8 +27,9 @@
       } else {
         console.warn("Pi SDK not found. Make sure you are running in the Pi Browser.");
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error("Pi Authentication failed:", err);
+      alert("Auth Error: " + (err?.message || JSON.stringify(err)));
     }
   };
 

@@ -23,7 +23,16 @@ export default function Home() {
         return;
       }
 
-      const paymentData = {
+      // Re-authenticate to ensure payments scope is active
+      const scopes = ['username', 'payments'];
+      function onIncompletePaymentFound(payment: any) {
+        console.log("Incomplete payment found", payment);
+      }
+      
+      await window.Pi.authenticate(scopes, onIncompletePaymentFound);
+       console.log("Auth inside handleDonate successful");
+
+       const paymentData = {
         amount: 1,
         memo: "Donation to EasyBuy",
         metadata: { donation: true }
