@@ -136,6 +136,21 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* Footer Links */}
+        <footer className="pt-8 pb-4 border-t border-border mt-8">
+          <div className="flex flex-col items-center gap-4 text-sm text-muted-foreground">
+            <div className="flex gap-6">
+              <Link to="/terms" className="hover:text-primary transition-colors">
+                Terms & Conditions
+              </Link>
+              <Link to="/privacy" className="hover:text-primary transition-colors">
+                Privacy Policy
+              </Link>
+            </div>
+            <p>© {new Date().getFullYear()} EasyBuy. All rights reserved.</p>
+          </div>
+        </footer>
       </div>
     </div>
   );
