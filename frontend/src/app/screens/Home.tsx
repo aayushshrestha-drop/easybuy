@@ -39,7 +39,11 @@ export default function Home() {
         onCancel: (paymentId: string) => console.log("Payment cancelled", paymentId),
         onError: (error: Error, paymentId?: string) => console.error("Payment error", error, paymentId)
       };
-
+      await window.Pi.init({
+        version: "2.0",
+        sandbox: true,
+        scopes: ["payments"]
+      });
       await window.Pi.createPayment(paymentData, callbacks);
       alert("Thank you for your donation!");
     } catch (err: any) {
@@ -60,7 +64,7 @@ export default function Home() {
       <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
         <div className="flex items-center justify-between p-4">
           <h1 className="text-primary">EasyBuy - Door to Pi's Ecosystem</h1>
-          <button 
+          <button
             onClick={handleDonate}
             className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2"
           >

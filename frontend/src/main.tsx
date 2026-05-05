@@ -23,6 +23,7 @@
 
         const authResults = await window.Pi.authenticate(scopes, onIncompletePaymentFound);
         console.log("Pi Authentication successful:", authResults);
+        alert("Pi Authentication successful" + JSON.stringify(authResults));
       } else {
         console.warn("Pi SDK not found. Make sure you are running in the Pi Browser.");
       }
