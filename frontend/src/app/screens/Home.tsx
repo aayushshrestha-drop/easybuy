@@ -8,6 +8,7 @@ import { authenticatePi } from "../utils/pi-sdk";
 export default function Home() {
   const [apps, setApps] = useState<App[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isPiAvailable, setIsPiAvailable] = useState(false);
 
   useEffect(() => {
     const loadApps = async () => {
@@ -15,6 +16,11 @@ export default function Home() {
       setApps(data);
     };
     loadApps();
+    
+    // Check if Pi SDK is available
+    if (window.Pi) {
+      setIsPiAvailable(true);
+    }
   }, []);
 
   const handleDonate = async () => {
@@ -65,13 +71,15 @@ export default function Home() {
       <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
         <div className="flex items-center justify-between p-4">
           <h1 className="text-primary">EasyBuy - Door to Pi's Ecosystem</h1>
-          <button
-            onClick={handleDonate}
-            className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2"
-          >
-            <span>❤️</span>
-            Donate
-          </button>
+          {isPiAvailable && (
+            <button
+              onClick={handleDonate}
+              className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2"
+            >
+              <span>❤️</span>
+              Donate
+            </button>
+          )}
         </div>
       </div>
 
