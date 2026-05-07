@@ -16,7 +16,11 @@ const trackHit = async (req, res, next) => {
       pi_user: req.headers['x-pi-user'] || 'guest' // Adjust based on how you pass pi_user
     });
     await hitCount.save();
-    console.log(`Hit tracked: ${ip} - ${req.originalUrl}`);
+
+
+    const count = await HitCount.countDocuments();
+    //console.log(`Hit tracked: ${ip} - ${req.originalUrl}`);
+    console.log(`Hit Count: ${count}`);
   } catch (err) {
     console.error('Failed to track hit:', err.message);
   }
