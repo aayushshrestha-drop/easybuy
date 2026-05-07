@@ -8,7 +8,7 @@ const chatRouter = require('./routes/chat.route');
 const paymentRouter = require('./routes/payment.route');
 
 const app = express();
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 
 const host = process.env.HOST || '0.0.0.0';
 const port = process.env.PORT || 3000;
